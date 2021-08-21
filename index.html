@@ -221,16 +221,17 @@
   </style>
   <script>
     function load() {
+          resize();
           var url = document.URL.split("#");
           var loc = url[url.length-1];
           if (loc === "About" || (loc!=="About"&&loc!=="Publications"&&loc!=="Professional")) {
-                activateAbout();
+                activateAbout("click");
               }
           if (loc === "Publications") {
-                activatePublications();
+                activatePublications("click");
               }
           if (loc === "Professional") {
-                activateProfessional();
+                activateProfessional("click");
               }
         }
 
@@ -239,13 +240,13 @@
           var pubOffset = document.getElementById("Publications").offsetTop - this.screen.height/2;
           var proOffset = document.getElementById("Professional").offsetTop - this.screen.height/2;
           if (curOffset >= proOffset) {
-                activateProfessional();
+                activateProfessional("scroll");
               }
           else if (curOffset < pubOffset) {
-                activateAbout();
+                activateAbout("scroll");
               }
           else {
-                activatePublications();
+                activatePublications("scroll");
               }
         }
 
@@ -253,11 +254,14 @@
           var curWidth = document.getElementsByClassName("navbar-inner-container")[0].getBoundingClientRect().width;
           var navbarhrefs = document.getElementsByClassName("navbar-href");
           var navbarhrefactive = document.getElementsByClassName("navbar-href-active")[0];
+          var dropdown = document.getElementById("dropdown");
           if (curWidth < 900) {
                 modifyNavbarHrefs(navbarhrefs, navbarhrefactive, "none");
+                dropdown.style.display = "block";
               }
           else {
                 modifyNavbarHrefs(navbarhrefs, navbarhrefactive, "block");
+                dropdown.style.display = "none";
               }
         }
 
@@ -290,31 +294,37 @@
           }
         }
 
-    function activatePublications () {
+    function activatePublications (action) {
           var url = document.URL.split("#")[0] + "#Publications"
           document.getElementById("navbar-about").className = "navbar-href";
           document.getElementById("navbar-professional").className = "navbar-href";
           document.getElementById("navbar-publications").className = "navbar-href-active";
           this.history.replaceState({}, null, url);
-          closeMenu();
+          if (action !== "scroll"){
+            closeMenu();
+          }
         }
 
-    function activateAbout() {
+    function activateAbout(action) {
           var url = document.URL.split("#")[0] + "#About"
           document.getElementById("navbar-about").className = "navbar-href-active";
           document.getElementById("navbar-professional").className = "navbar-href";
           document.getElementById("navbar-publications").className = "navbar-href";
           this.history.replaceState({}, null, url);
-          closeMenu();
+          if (action !== "scroll"){
+            closeMenu();
+          }
         }
 
-    function activateProfessional() {
+    function activateProfessional(action) {
           var url = document.URL.split("#")[0] + "#Professional"
           document.getElementById("navbar-about").className = "navbar-href";
           document.getElementById("navbar-publications").className = "navbar-href";
           document.getElementById("navbar-professional").className = "navbar-href-active";
           this.history.replaceState({}, null, url);
-          closeMenu();
+          if (action !== "scroll"){
+            closeMenu();
+          }
         }
   </script>
           <body onload="load()" onscroll="scroll()" onresize="resize()">
@@ -331,13 +341,13 @@
                         <img src="./imgs/dropdown.png" height="30" width="30" id="dropdown" onclick="clickMenu()">
                       </li>
                       <li class="navbar-item">
-                        <a href="#About" class="navbar-href" id="navbar-about" onclick="activateAbout()">About</a>
+                        <a href="#About" class="navbar-href" id="navbar-about" onclick="activateAbout('click')">About</a>
                       </li>
                       <li class="navbar-item">
-                        <a href="#Publications" class="navbar-href" id="navbar-publications" onclick="activatePublications()">Publications</a>
+                        <a href="#Publications" class="navbar-href" id="navbar-publications" onclick="activatePublications('click')">Publications</a>
                       </li>
                       <li class="navbar-item">
-                        <a href="#Professional" class="navbar-href" id="navbar-professional" onclick="activateProfessional()">Professional Activities</a>
+                        <a href="#Professional" class="navbar-href" id="navbar-professional" onclick="activateProfessional('click')">Professional Activities</a>
                       </li>
                       <li class="navbar-item">
                         <a href="./files/SongLiCV.pdf" class="navbar-href">CV</a>
