@@ -31,11 +31,12 @@
       margin-bottom: 10px;
       font-size: 20px;
       color: white;
-      padding-left: 10px;
+      padding-left: 20px;
     }
     .navbar-list {
       list-style-type: none;
       overflow: hidden;
+      padding-right: 20px;
     }
     .navbar-item {
       float: left;
@@ -71,7 +72,7 @@
       display: none;
       cursor: pointer;
     }
-    @media screen and (max-width: 899px) {
+    @media screen and (max-width: 869px) {
       .navbar-item {
         float: none;
       }
@@ -85,7 +86,7 @@
 
     /* About */
     .about-container {
-      padding-top: 120px;
+      padding-top: 80px;
       padding-bottom: 120px;
     }
     .about-inner-container {
@@ -98,6 +99,7 @@
     /* left photo part */
     .about-container-left {
       flex: 33.333%;
+      padding-top: 40px;
       padding-left: 20px;
       padding-right: 20px;
     }
@@ -124,6 +126,7 @@
     /* right intro part */
     .about-container-right {
       flex: 66.667%;
+      padding-top: 40px;
       padding-left: 20px;
       padding-right: 20px;
     }
@@ -210,13 +213,13 @@
       padding: 20px 0px 20px 0px;
     }
     .professional-title {
-      padding: 10px 0px 10px 10px;
+      padding: 10px
     }
     .professional-list {
       list-style-type: none;
     }
     .professional-list-item {
-      padding: 10px 0px 10px 20px;
+      padding: 10px 20px 10px 20px;
     }
   </style>
   <script>
@@ -255,7 +258,7 @@
           var navbarhrefs = document.getElementsByClassName("navbar-href");
           var navbarhrefactive = document.getElementsByClassName("navbar-href-active")[0];
           var dropdown = document.getElementById("dropdown");
-          if (curWidth < 900) {
+          if (curWidth < 870) {
                 modifyNavbarHrefs(navbarhrefs, navbarhrefactive, "none");
                 dropdown.style.display = "block";
               }
