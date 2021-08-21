@@ -86,6 +86,7 @@
     /* About */
     .about-container {
       padding-top: 120px;
+      padding-bottom: 120px;
     }
     .about-inner-container {
       display: flex;
@@ -97,7 +98,8 @@
     /* left photo part */
     .about-container-left {
       flex: 33.333%;
-      padding: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
     .selfphoto {
       display: block;
@@ -122,18 +124,18 @@
     /* right intro part */
     .about-container-right {
       flex: 66.667%;
-      padding: 40px;
-      margin-bottom: 50px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
     #aboutme {
-      margin-bottom: 30px;
+      padding-bottom: 30px;
     }
     .aboutme-content {
       line-height: 25px;
     }
     #education {
-      margin-top: 50px;
-      margin-bottom: 20px;
+      padding-top: 50px;
+      padding-bottom: 20px;
     }
     .university {
       padding-top: 10px;
@@ -141,7 +143,7 @@
     .degree {
       color: grey;
       padding-top: 10px;
-      margin-left: 20px;
+      padding-left: 20px;
     }
 /*    .uni-icon {
       vertical-align: middle;
@@ -158,11 +160,10 @@
       max-width: 1100px;
       margin-left: auto;
       margin-right: auto;
-      padding-left: 40px;
-      padding-right: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
     #publications {
-      padding-top: 30px;
       padding-bottom: 30px;
     }
     .publications-content {
@@ -197,11 +198,10 @@
       max-width: 1100px;
       margin-left: auto;
       margin-right: auto;
-      padding-left: 40px;
-      padding-right: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
     #professional {
-      padding-top: 30px;
     }
     .professional-activity {
       padding: 20px 0px 10px 0px;
@@ -261,6 +261,15 @@
               }
         }
 
+    function modifyNavbarHrefs(navbarhrefs, navbarhrefactive, action) {
+          for (i=0; i<navbarhrefs.length; i++) {
+                navbarhrefs[i].style.display = action;
+              }
+          if (navbarhrefactive) {
+                navbarhrefactive.style.display = action;
+              }
+        }
+
     function clickMenu() {
           var navbarhrefs = document.getElementsByClassName("navbar-href");
           var navbarhrefactive = document.getElementsByClassName("navbar-href-active")[0];
@@ -272,13 +281,13 @@
               }
         }
 
-    function modifyNavbarHrefs(navbarhrefs, navbarhrefactive, action) {
-          for (i=0; i<navbarhrefs.length; i++) {
-                navbarhrefs[i].style.display = action;
-              }
-          if (navbarhrefactive) {
-                navbarhrefactive.style.display = action;
-              }
+    function closeMenu() {
+          var menu = document.getElementById("dropdown").style.display;
+          if (menu !== "none") {
+              var navbarhrefs = document.getElementsByClassName("navbar-href");
+              var navbarhrefactive = document.getElementsByClassName("navbar-href-active")[0];
+              modifyNavbarHrefs(navbarhrefs, navbarhrefactive, "none");
+          }
         }
 
     function activatePublications () {
@@ -287,6 +296,7 @@
           document.getElementById("navbar-professional").className = "navbar-href";
           document.getElementById("navbar-publications").className = "navbar-href-active";
           this.history.replaceState({}, null, url);
+          closeMenu();
         }
 
     function activateAbout() {
@@ -295,6 +305,7 @@
           document.getElementById("navbar-professional").className = "navbar-href";
           document.getElementById("navbar-publications").className = "navbar-href";
           this.history.replaceState({}, null, url);
+          closeMenu();
         }
 
     function activateProfessional() {
@@ -303,14 +314,8 @@
           document.getElementById("navbar-publications").className = "navbar-href";
           document.getElementById("navbar-professional").className = "navbar-href-active";
           this.history.replaceState({}, null, url);
+          closeMenu();
         }
-
-    function closeMenu() {
-      var menu = document.getElementById("dropdown").style.display;
-      if (menu !== "none") {
-        clickMenu();
-      }
-    }
   </script>
           <body onload="load()" onscroll="scroll()" onresize="resize()">
             <div class="container">
