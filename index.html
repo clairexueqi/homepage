@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Song Li</title>
+		<meta name="viewport" content="width=device-width">
     <link rel="icon" href="./imgs/favicon.png">
 	</head>
 	<style>
@@ -66,7 +67,7 @@
 			display: none;
 			cursor: pointer;
 		}
-		@media screen and (max-width: 720px) {
+		@media screen and (max-width: 899px) {
 			.navbar-item {
 				float: none;
 			}
@@ -209,7 +210,7 @@
 			var curWidth = document.getElementsByClassName("navbar-inner-container")[0].getBoundingClientRect().width;
 			var navbarhrefs = document.getElementsByClassName("navbar-href");
 			var navbarhrefactive = document.getElementsByClassName("navbar-href-active")[0];
-			if (curWidth <= 720) {
+			if (curWidth < 900) {
 				modifyNavbarHrefs(navbarhrefs, navbarhrefactive, "none");
 			}
 			else {
